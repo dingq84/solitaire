@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function CardsData(){
   const suits = ['spade', 'heart', 'diamond', 'club'];
   const cards = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
@@ -24,17 +22,39 @@ export default function CardsData(){
       let two = [];
       let three = [];
       let four = [];
+      let five = [];
+      let six = [];
+      let seven = [];
+      let eight = [];
       for(let i = 0; i <shuffledArray.length; i++){
-        if(i < 13)
-          one.push(shuffledArray[i])
-        else if(i >= 13 && i < 26)
-          two.push(shuffledArray[i])
-        else if (i >= 26 && i < 39)
-          three.push(shuffledArray[i])
-        else
-          four.push(shuffledArray[i]);
+        switch (i % 8) {
+          case 1:
+            one.push(shuffledArray[i]);
+            break;
+          case 2:
+            two.push(shuffledArray[i]);
+            break;
+          case 3:
+            three.push(shuffledArray[i]);
+            break;
+          case 4:
+            four.push(shuffledArray[i]);
+            break;
+          case 5:
+            five.push(shuffledArray[i]);
+            break;
+          case 6:
+            six.push(shuffledArray[i]);
+            break;
+          case 7:
+            seven.push(shuffledArray[i]);
+            break;
+          default:
+            eight.push(shuffledArray[i]);
+
+        }
       }
-      return [one, two, three, four]
+      return [one, two, three, four, five, six ,seven, eight]
   }
 
 
