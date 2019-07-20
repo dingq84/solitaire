@@ -4,7 +4,7 @@ export default function CardsData(){
   let totalCards = [];
   for(let i = 0; i < suits.length; i++){
     for (let j = 0; j < cards.length; j++){
-      totalCards.push(suits[i] + cards[j])
+      totalCards.push(suits[i] + '-' + cards[j])
     }
   }
 
