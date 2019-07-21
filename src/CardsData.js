@@ -9,14 +9,19 @@ export default function CardsData(dragStart, drop, cancelDefault){
       totalCards.push(
         <img
           key={suits[i] + cards[j]}
-          id={suits[i] + cards[j]}
-          src={require(`./assets/images/card-${suits[i]}-${cards[j]}.svg`)}
+          id={suits[i] + '-' + cards[j]}
+          src={require(`./assets/images/${suits[i]}/card-${suits[i]}-${cards[j]}.svg`)}
           alt={suits[i] + cards[j]}
           onDragStart={(e) => dragStart(e)}
           onDragOver={(e) => cancelDefault(e)}
           onDragEnter={(e) => cancelDefault(e)}
           onDrop={(e) => drop(e)}
-          draggable="true"
+          draggable="false"
+          style={{
+            position: 'absolute',
+            left: '0',
+            transition: '.3s'
+          }}
         >
         </img>
       )

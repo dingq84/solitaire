@@ -29,17 +29,23 @@
 
   &__sidebar {
     height: 54px;
-    margin: 8px 87px;
+    // width: 100%;
+    margin: 8px 0;
     background-color: rgba(0, 0, 0, 1);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-family: 'PT Sans', sans-serif;
 
     &__flag {
       font-size: 32px;
       color: rgba(0, 255, 206, 1);
+      font-style: italic;
+      font-weight: bold;
+      margin-left: 87px;
+      text-align: left;
 
-      &:last-child {
+      & span:last-child {
         color: rgba(166, 23, 255, 1);
       }
     }
@@ -50,10 +56,23 @@
     }
 
     &__buttons {
-      width: 173px;
+      width: 220px;
+      margin-right: 87px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      font-weight: bold;
+      color: #fff;
+
+      & div {
+        width: 70px;
+        display: flex;
+        cursor: pointer;
+
+        & span {
+          font-size: 16px;
+        }
+      }
     }
   }
 
@@ -68,12 +87,12 @@
       display: flex;
       justify-content: space-around;
 
-      & div {
+      &__items {
         @extend %cardStyle;
-        background-color: rgba(255, 255, 255, 0.08);
+        background-color: rgba(94, 72, 72, 0.08);
         line-height: 100%;
 
-        & img {
+        &__icon {
           margin-top: 74.5px;
         }
       }

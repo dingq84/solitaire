@@ -7,6 +7,9 @@ import club from './assets/images/club-24px.svg';
 import diamond from './assets/images/diamond-24px.svg';
 import heart from './assets/images/heart-24px.svg';
 import spade from './assets/images/spade-24px.svg';
+import restart from './assets/images/ic_loop_24px.svg';
+import pause from './assets/images/ic_pause_24px.svg';
+import undo from './assets/images/ic_undo_24px.svg';
 
 import './_Main.scss';
 
@@ -19,20 +22,24 @@ export default function Main(){
   }
 
   function drop (e) {
-    // console.log('dropped')
     cancelDefault(e)
     let id = e.dataTransfer.getData('text/plain');
     const target = document.getElementById(id);
     console.log(e.target)
 
-    // target.style.top = e.target.style.top ? '10%' : '0%';
-    // target.style.left = '0';
-    // target.style.zIndex = parseInt(e.target.style.zIndex) + 1 || '0';
-    e.target.appendChild(target);
+    //only drop to div 
+    if (e.target.className == 'left'){
+      return 
+      // e.target.parentNode.appendChild(target)
+    }else if (e.target.className === 'solitaire__wrap__place__left__items'){
+      target.style.top = '0%';
+      target.className = 'left';
+      e.target.appendChild(target);
+    }
   }
 
   function cancelDefault(e){
-    // console.log('dragenter');
+    console.log('dragenter');
     e.preventDefault();
     e.stopPropagation();
     return false;
@@ -48,9 +55,32 @@ export default function Main(){
           00:30
         </span>
         <div className="solitaire__wrap__sidebar__buttons">
-          <button>UNDO</button>
-          <button>PAUSE</button>
-          <button>RESTART</button>
+          <div>
+            <img
+              src={undo}
+              alt='undo'
+            >
+            </img>
+            <span>UNDO</span>
+          </div>
+          <div>
+            <img
+              src={pause}
+              alt='pause'
+            >
+              
+            </img>
+            <span>PAUSE</span>
+          </div>
+          <div>
+            <img
+              src={restart}
+              alt='restart'
+            >
+              
+            </img>
+            <span>RESTART</span>
+          </div>
         </div>
       </div>
       <div className="solitaire__wrap__place">
@@ -64,6 +94,7 @@ export default function Main(){
             <img
               src={spade}
               alt='spade'
+              className='solitaire__wrap__place__left__items__icon'
             ></img>
           </div>
           <div
@@ -75,6 +106,7 @@ export default function Main(){
             <img
               src={heart}
               alt='heart'
+              className='solitaire__wrap__place__left__items__icon'
             >
             </img>
           </div>
@@ -87,6 +119,7 @@ export default function Main(){
             <img
               src={club}
               alt='club'
+              className='solitaire__wrap__place__left__items__icon'
             >
             </img>
           </div>
@@ -99,6 +132,7 @@ export default function Main(){
             <img
               src={diamond}
               alt='diamond'
+              className='solitaire__wrap__place__left__items__icon'
             >
             </img>
           </div>
@@ -137,56 +171,104 @@ export default function Main(){
           onDragEnter={(e) => cancelDefault(e)}
           onDrop={(e) => drop(e)}
         >
-          {one.map(item => item)}
+          {
+           one.map((item, index) => {
+             item.props.style.top = `${index * 32}px`;
+             {/* item.props.style.zIndex = index; */}
+             return item
+           })
+          }
         </div>
         <div className="solitaire__wrap__cards__second"
           onDragOver={(e) => cancelDefault(e)}
           onDragEnter={(e) => cancelDefault(e)}
           onDrop={(e) => drop(e)}
         >
-          {two.map(item => item)}
+          {
+            two.map((item, index) => {
+             item.props.style.top = `${index * 32}px`;
+             item.props.style.zIndex = index;
+             return item
+           })
+          }
         </div>
         <div className="solitaire__wrap__cards__third"
           onDragOver={(e) => cancelDefault(e)}
           onDragEnter={(e) => cancelDefault(e)}
           onDrop={(e) => drop(e)}
         >
-          {three.map(item => item)}
+          {
+            three.map((item, index) => {
+             item.props.style.top = `${index * 32}px`;
+             item.props.style.zIndex = index;
+             return item
+           })
+          }
         </div>
         <div className="solitaire__wrap__cards__forth"
           onDragOver={(e) => cancelDefault(e)}
           onDragEnter={(e) => cancelDefault(e)}
           onDrop={(e) => drop(e)}
         >
-          {four.map(item => item)}
+          {
+            four.map((item, index) => {
+             item.props.style.top = `${index * 32}px`;
+             item.props.style.zIndex = index;
+             return item
+           })
+          }
         </div>
         <div className="solitaire__wrap__cards__fifth"
           onDragOver={(e) => cancelDefault(e)}
           onDragEnter={(e) => cancelDefault(e)}
           onDrop={(e) => drop(e)}
         >
-          {five.map(item => item)}
+          {
+            five.map((item, index) => {
+             item.props.style.top = `${index * 32}px`;
+             item.props.style.zIndex = index;
+             return item
+           })
+          }
         </div>
         <div className="solitaire__wrap__cards__sixth"
           onDragOver={(e) => cancelDefault(e)}
           onDragEnter={(e) => cancelDefault(e)}
           onDrop={(e) => drop(e)}
         >
-          {six.map(item => item)}
+          {
+            six.map((item, index) => {
+             item.props.style.top = `${index * 32}px`;
+             item.props.style.zIndex = index;
+             return item
+           })
+          }
         </div>
         <div className="solitaire__wrap__cards__seventh"
           onDragOver={(e) => cancelDefault(e)}
           onDragEnter={(e) => cancelDefault(e)}
           onDrop={(e) => drop(e)}
         >
-          {seven.map(item => item)}
+          {
+            seven.map((item, index) => {
+             item.props.style.top = `${index * 32}px`;
+             item.props.style.zIndex = index;
+             return item
+           })
+          }
         </div>
         <div className="solitaire__wrap__cards__eighth"
           onDragOver={(e) => cancelDefault(e)}
           onDragEnter={(e) => cancelDefault(e)}
           onDrop={(e) => drop(e)}
         >
-          {eight.map(item => item)}
+          {
+            eight.map((item, index) => {
+             item.props.style.top = `${index * 32}px`;
+             item.props.style.zIndex = index;
+             return item
+           })
+          }
         </div>
       </div>
     </div>
