@@ -13,27 +13,42 @@ import undo from './assets/images/ic_undo_24px.svg';
 
 import './_Main.scss';
 
-export default function Main(){
+export default function Main() {
   const [one, two, three, four, five, six ,seven, eight] = CardsData(dragStart, drop, cancelDefault);
 
   function dragStart(e){
-    console.log(e.target.id);
-    e.dataTransfer.setData('text/plain', e.target.id);
+    if (e.target === e.target.parentNode.lastChild)
+      e.dataTransfer.setData('text/plain', e.target.id);
+    else 
+      e.preventDefault();
   }
 
   function drop (e) {
     cancelDefault(e)
     let id = e.dataTransfer.getData('text/plain');
     const target = document.getElementById(id);
-    console.log(e.target)
 
-    //only drop to div 
-    if (e.target.className == 'left'){
+    //左上方只能放一張 
+    if (e.target.className === 'left') {
       return 
       // e.target.parentNode.appendChild(target)
-    }else if (e.target.className === 'solitaire__wrap__place__left__items'){
-      target.style.top = '0%';
+      //放到左上方
+    } else if (e.target.className === 'solitaire__wrap__place__left__items') {
+      target.style.top = '0px';
       target.className = 'left';
+      e.target.appendChild(target);
+      //放到其他排堆
+      //TODO 比卡片花色和大小
+    } else if (e.target.className === '') {
+      console.log(e.target.style);
+      const value = e.target.style.top.replace('px');
+      target.className = '';
+      target.style.top = (parseInt(value) + 32).toString() + 'px';
+      target.style.zIndex = e.target.style.zIndex + 1;
+      e.target.parentNode.appendChild(target);
+    } else if (e.target.className.indexOf('solitaire__wrap__cards__') !== -1) {
+      target.style.top = '0px';
+      target.style.zIndex = 0;
       e.target.appendChild(target);
     }
   }
@@ -167,9 +182,9 @@ export default function Main(){
       <div className="solitaire__wrap__cards">
         <div
           className="solitaire__wrap__cards__first"
-          onDragOver={(e) => cancelDefault(e)}
-          onDragEnter={(e) => cancelDefault(e)}
-          onDrop={(e) => drop(e)}
+          // onDragOver={(e) => cancelDefault(e)}
+          // onDragEnter={(e) => cancelDefault(e)}
+          // onDrop={(e) => drop(e)}
         >
           {
            one.map((item, index) => {

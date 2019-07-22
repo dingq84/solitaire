@@ -16,7 +16,7 @@ export default function CardsData(dragStart, drop, cancelDefault){
           onDragOver={(e) => cancelDefault(e)}
           onDragEnter={(e) => cancelDefault(e)}
           onDrop={(e) => drop(e)}
-          draggable="false"
+          draggable='true'
           style={{
             position: 'absolute',
             left: '0',
