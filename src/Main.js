@@ -31,20 +31,30 @@ export default function Main() {
     //左上方只能放一張 
     if (e.target.className === 'left') {
       return 
-      // e.target.parentNode.appendChild(target)
-      //放到左上方
-    } else if (e.target.className === 'solitaire__wrap__place__left__items') {
+    // if it drops the same place, it will do nothing.
+    } else if (e.target.parentNode.className === target.parentNode.className) {
+      return
+    }else if (e.target.className === 'solitaire__wrap__place__left__items') {
       target.style.top = '0px';
       target.className = 'left';
       e.target.appendChild(target);
       //放到其他排堆
       //TODO 比卡片花色和大小
     } else if (e.target.className === '') {
-      console.log(e.target.style);
-      const value = e.target.style.top.replace('px');
+      const lastCard = e.target.parentNode.lastChild;
+      const [lastCardSuit, lastCardNumber] = lastCard.id.split('-');
+      const [currentSuit, currentNumber] = target.id.split('-');
+      console.log(parseInt(currentNumber) + 1);
+      if (parseInt(currentNumber) + 1 !== parseInt(lastCardNumber) ||
+        (['spade', 'club'].includes(currentSuit) && ['spade', 'club'].includes(lastCardSuit)) ||
+        (['heart', 'diamond'].includes(currentSuit) && ['heart', 'diamond'].includes(lastCardSuit))
+        )
+        return;
+
+      const lastValue = lastCard.style.top.replace('px');
       target.className = '';
-      target.style.top = (parseInt(value) + 32).toString() + 'px';
-      target.style.zIndex = e.target.style.zIndex + 1;
+      target.style.top = (parseInt(lastValue) + 32).toString() + 'px';
+      target.style.zIndex = lastCard.style.zIndex + 1;
       e.target.parentNode.appendChild(target);
     } else if (e.target.className.indexOf('solitaire__wrap__cards__') !== -1) {
       target.style.top = '0px';
