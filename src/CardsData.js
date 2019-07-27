@@ -1,45 +1,41 @@
 import React from 'react';
 
-export default function CardsData(dragStart, drop, cancelDefault){
+export default function CardsData(dragStart, drop, cancelDefault) {
   const suits = ['spade', 'heart', 'diamond', 'club'];
   const cards = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'];
   let totalCards = [];
-  for(let i = 0; i < suits.length; i++){
-    for (let j = 0; j < cards.length; j++){
+  for (let i = 0; i < suits.length; i++) {
+    for (let j = 0; j < cards.length; j++) {
       totalCards.push(
         <img
           key={suits[i] + cards[j]}
           id={suits[i] + '-' + cards[j]}
           src={require(`./assets/images/${suits[i]}/card-${suits[i]}-${cards[j]}.svg`)}
           alt={suits[i] + cards[j]}
-          onDragStart={(e) => dragStart(e)}
-          onDragOver={(e) => cancelDefault(e)}
-          onDragEnter={(e) => cancelDefault(e)}
-          onDrop={(e) => drop(e)}
+          onDragStart={dragStart}
+          onDragOver={cancelDefault}
+          onDragEnter={cancelDefault}
+          onDrop={drop}
           draggable='true'
-          style={{
-            position: 'absolute',
-            left: '0',
-            transition: '.3s'
-          }}
+
         >
         </img>
       )
     }
   }
 
-  function shuffle(a){
+  function shuffle(a) {
     for (let i = a.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
     }
     return a;
   }
 
   const split = totalCards => {
-    const arr = [[], [], [] ,[], [], [], [], []];
+    const arr = [[], [], [], [], [], [], [], []];
     const shuffledArray = shuffle(totalCards);
-    for(let i = 0; i <shuffledArray.length; i++){
+    for (let i = 0; i < shuffledArray.length; i++) {
       switch (i % 8) {
         case 1:
           arr[0].push(shuffledArray[i]);
@@ -64,7 +60,7 @@ export default function CardsData(dragStart, drop, cancelDefault){
           break;
         default:
           arr[7].push(shuffledArray[i]);
-        }
+      }
     }
 
     return arr;

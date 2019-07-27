@@ -35,7 +35,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-family: 'PT Sans', sans-serif;
+    font-family: "PT Sans", sans-serif;
 
     &__flag {
       font-size: 32px;
@@ -62,7 +62,11 @@
       align-items: center;
       justify-content: space-between;
       font-weight: bold;
-      color: #fff;
+      color: rgb(136, 123, 123);
+      user-select: none;
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
 
       & div {
         width: 70px;
@@ -87,7 +91,10 @@
       display: flex;
       justify-content: space-around;
 
-      &__items {
+      &__items1,
+      &__items2,
+      &__items3,
+      &__items4 {
         @extend %cardStyle;
         background-color: rgba(94, 72, 72, 0.08);
         line-height: 100%;
