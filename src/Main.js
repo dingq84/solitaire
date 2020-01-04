@@ -23,6 +23,7 @@ export default function Main() {
   function rollback() {
     if (steps.length !== 0) {
       const newSteps = [...steps];
+      console.log(newSteps);
       const lastStep = newSteps.pop();
       const { parrent, target, targetZIndex, targetTop } = lastStep;
       const targetNode = document.getElementById(target);
@@ -43,24 +44,24 @@ export default function Main() {
           <span>FREE</span>
           <span>CELL</span>
         </div>
-        <span className="solitaire__wrap__sidebar__time">
-          {time}
-        </span>
+        <span className="solitaire__wrap__sidebar__time">{time}</span>
         <div className="solitaire__wrap__sidebar__buttons">
           <div onClick={rollback}>
-            <img src={undo} alt='undo' />
+            <img src={undo} alt="undo" />
             <span>UNDO</span>
           </div>
           {pauseDOM}
           <div
             onClick={() => {
-              if (window.confirm('Are you sure you want to restart the game?')) {
+              if (
+                window.confirm('Are you sure you want to restart the game?')
+              ) {
                 setNewGame(!newGame);
                 window.location.reload();
               }
             }}
           >
-            <img src={restart} alt='restart' />
+            <img src={restart} alt="restart" />
             <span>RESTART</span>
           </div>
         </div>
@@ -69,9 +70,7 @@ export default function Main() {
         {leftDOM}
         {rightDOM}
       </div>
-      <div className="solitaire__wrap__cards">
-        {cardsDOM}
-      </div>
+      <div className="solitaire__wrap__cards">{cardsDOM}</div>
     </div>
-  )
+  );
 }
